@@ -1,0 +1,24 @@
+{%extends 'base.html'%}
+{%block content%}
+    <!-- Dashboard Content -->
+    {% if batch_data %}
+        <div class="grid-container">
+            {% for batch in batch_data %}
+                <div class="grid-item">
+                    <a href="{{ url_for('batch_detail', batch_id=batch.id) }}">
+                        <h3>{{ batch.name }}</h3>
+                        <img src="{{ url_for('static', filename=batch.preview_image.replace('\\', '/'))}}" alt="Preview Image" class="preview-image">
+                        <p>{{ batch.species }}</p>
+                        <p class="dates">Start Date: {{ batch.start_date }}</p>
+                        <p class="dates">End Date: {{ batch.end_date }}</p>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="no-batches">
+            <p>No batches available. <br><br>
+            <button class="btn-primary" onclick="window.location.href='{{ url_for('upload_page') }}'">Upload a new batch</button></p>
+        </div>
+    {% endif %}
+{%endblock%}

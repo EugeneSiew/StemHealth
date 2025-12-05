@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+  <!-- Upload Form -->
+  <div class="form-container">
+    <form action="{{ url_for('upload_data') }}" method="POST" enctype="multipart/form-data" onsubmit="return validateForm(event)" id="upload-form">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Eg: Batch 1" required />
+            <div id="name-warning" style="display:none; color: red;">This name already exists. Please choose a different name.</div>
+        </div>
+        <div class="form-group">
+            <label for="species">Species</label>
+            <input type="text" id="species" name="species" placeholder="Eg: Pisa" required />
+        </div>
+        <div class="form-group">
+          <label for="environmental-data">Environmental Data (JSON format)</label>
+          <input type="file" id="environmental-data" name="environmental_data" accept=".json" />
+          <label for="environmental-data" class="custom-file-label">Choose JSON File</label>
+          <div id="environmental-data-list"></div>
+          <div id="environmental-data-warning" class="file-warning"></div>
+        </div>
+          <div class="form-group">
+            <label for="file">Upload Images</label>
+            <input type="file" class="form-control-file" id="file" name="file" multiple accept=".png,.jpg,.jpeg" />
+            <label for="file" class="custom-file-label">Choose Images</label>
+            <div id="file-list"></div>
+            <div id="file-warning" class="file-warning" style="display:none; color: red;"></div>
+        </div>
+        <div id="spinner-container" style="display: none;">
+          <svg class="spinner" viewBox="0 0 50 50">
+              <circle class="spinner-path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+          </svg>
+          <p id="spinner-text">Uploading...</p>
+        </div>
+        <div class="button-container">
+          <button type="submit" class="btn btn-primary" id="submit-button">Submit</button>
+      </div>
+  </form>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/upload.js') }}"></script>
+{% endblock %}

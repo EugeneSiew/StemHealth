@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>StemHealth</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        <link rel="icon" href="{{ url_for('static', filename='stemhealth_logo.ico') }}" type="image/x-icon">
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    </head>
+
+    <body>
+        <!-- Navbar -->
+        <div class="wrapper">
+            <nav class="sidebar">
+                <span class="system-name">StemHealth</span>
+                <ul>
+                    <li>
+                        <a href="{{ url_for('dashboard') }}">
+                            <i class='bx bx-home'></i>
+                            <span class="nav-item">Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{url_for('upload_page')}}">
+                            <i class='bx bx-upload'></i>
+                            <span class="nav-item">Upload</span>
+                        </a>
+                    </li>
+                </ul>                 
+            </nav>
+            <!-- Main Content -->
+            <div class="main-content">
+                <!-- Flash Messages -->
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <div class="flash-messages">
+                        {% for category, message in messages %}
+                            <div class="flash-message {{ category }}">{{ message }}</div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                {% endwith %}
+                <h1>{{page_title}}</h1>
+                <div class="content-container">
+                    {% block content %}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>    
+    </body>
+</html>

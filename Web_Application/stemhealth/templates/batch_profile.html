@@ -1,0 +1,152 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="batch-container">
+        <!-- Batch Profile Table-->
+        <div class="batch-table-container">
+            <h2 class="batch-table-title">Batch Profile</h2>
+            <table class="batch-table">
+                <tbody>
+                    <tr>
+                        <th>Species</th>
+                        <td>{{ batch.species }}</td>
+                    </tr>
+                    <tr>
+                        <th>Start Date</th>
+                        <td>{{ end_date }}</td>
+                    </tr>
+                    <tr>
+                        <th>End Date</th>
+                        <td>{{ start_date }}</td>
+                    </tr>
+                    <tr>
+                        <th>Number of Entries</th>
+                        <td>{{ num_entries }}</td>
+                    </tr>
+                    <tr>
+                        <th>Average Temperature</th>
+                        <td>{{ avg_temperature }} °C</td>
+                    </tr>
+                    <tr>
+                        <th>Average Humidity</th>
+                        <td>{{ avg_humidity }} %</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="batch-summary-container">
+            <!-- Batch Summary -->
+            <h2 class="batch-summary-title">Batch Summary</h2>
+            <div class="batch-summary-content">
+                {% if batch.optimum_duration %}
+                    <p>For the {{batch.species}} seedlings in {{batch.name}}, the optimum duration for the seedlings to stay in the dark environment is <strong>{{batch.optimum_duration}}</strong>.</p>
+                    {% if batch.optimum_entry_id %}
+                        {% for entry in batch.entries %}
+                            {% if entry.id == batch.optimum_entry_id %}
+                                <p>This duration is based on the entry recorded on {{ entry.timestamp.strftime('%Y-%m-%d %H:%M:%S') }} with an average height of {{ entry.average_height }} cm, the closest to the targeted height of 2 cm.</p>
+                            {% endif %}
+                        {% endfor %}
+                    {% else %}
+                        <p>No entry has reached the optimum height yet.</p>
+                    {% endif %}
+                {% else %}
+                    <p>The summary will be displayed after the measurement.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="batch-tab-container">
+        <div class="batch-tab-controls">
+            <div class="batch-tabs">
+                <button class="batch-tab-button active" data-tab="overview">Batch Overview</button>
+                <button class="batch-tab-button {% if not has_predictions %}disabled{% endif %}" data-tab="height" {% if not has_predictions %}disabled{% endif %}>Height Analysis</button>
+            </div>
+            <div class="download-button">
+                <button class="btn-primary {% if not has_predictions %}disabled{% endif %}" onClick="downloadCSV({{batch.id}})" {% if not has_predictions %}disabled{% endif %}>Download CSV Data</button>
+            </div>
+        </div>
+        <div class="batch-tab-content">
+            <div id="overview" class="batch-tab-pane active">
+                {% if not has_predictions %}
+                    <p id="measurement-message">Measurement has not been performed.</p>
+                    <!-- Loading overlay specific to this pane -->
+                    <div id="spinner-container" style="display: none;">
+                        <svg class="spinner" viewBox="0 0 50 50">
+                            <circle class="spinner-path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+                        </svg>
+                        <p id="spinner-text">Measuring. This may take a few minutes...</p>
+                    </div>
+                    <div id="completion-container" style="display: none;">
+                        <i class='bx bx-check' style='color:#008000; font-size:72px' ></i>
+                        <p id="completion-text">Measurement complete.</p>
+                    </div>
+                    <div class="center-button">
+                        <button class="btn-primary" id="predict-button" onClick="measureBatch({{ batch.id }})">Measure</button>
+                    </div>
+                {% else %}
+                    <!-- Predicted Images -->
+                    <div id="predicted-images-container">
+                        <div id="predicted-images">
+                            {% for entry in entries %}
+                                {% if entry.predicted_image_filepath %}
+                                <div class="image-wrapper" onclick="showDetails('{{ url_for('static', filename=entry.original_image_filepath.replace('\\', '/'))}}', '{{ url_for('static', filename=entry.predicted_image_filepath.replace('\\', '/'))}}', '{{ entry.temperature }}', '{{ entry.humidity }}', '{{ entry.predicted_seedlings}}', '{{ entry.average_height }}')">
+                                    <img src="{{ url_for('static', filename=entry.predicted_image_filepath.replace('\\', '/'))}}" alt="Predicted Image" class="predicted-image">
+                                        <p>{{ entry.predicted_image_filepath.split('\\')[-1] }}</p>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+            <div id="height" class="batch-tab-pane">
+                {% if has_predictions %}
+                    <!-- Height Analysis Graphs -->
+                    <p style="margin-bottom: 0">Click on the graphs to open in a new tab.</p>
+                    <div class="graphs">
+                        {% for graph_path in graphs_paths %}
+                        <div class="graph">
+                            <h4>{{ graph_path.split('\\')[-1] | replace('_', ' ') | replace('.png', '') }}</h4>
+                            <a href="{{ url_for('static', filename=graph_path.replace('\\', '/')) }}" target="_blank">
+                                <img src="{{ url_for('static', filename=graph_path.replace('\\', '/')) }}" alt="Graph Image" class="graph-img">
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal popup to display predicted results-->
+    <div id="details-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h3 class="modal-title">Image Details</h3>
+            <div class="modal-body">
+                <div class="modal-images">
+                    <div class="modal-image-wrapper">
+                        <h4>Original Image</h4>
+                        <a id="modal-original-link" target="_blank">
+                            <img id="modal-original-image" src="" alt="Original Image" class="modal-image">
+                        </a>
+                    </div>
+                    <div class="modal-image-wrapper">
+                        <h4>Predicted Image</h4>
+                        <a id="modal-predicted-link" target="_blank">
+                            <img id="modal-predicted-image" src="" alt="Predicted Image" class="modal-image">
+                        </a>
+                    </div>
+                </div>
+                <div class="modal-details">
+                    <p><strong>Temperature:</strong> <span id="modal-temperature"></span> °C</p>
+                    <p><strong>Humidity:</strong> <span id="modal-humidity"></span> %</p>
+                    <p><strong>Predicted Number of Seedlings:</strong> <span id="modal-seedlings"></span></p>
+                    <p><strong>Predicted Average Height:</strong> <span id="modal-height"></span> cm</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/batch_profile.js') }}"></script>
+{% endblock %}

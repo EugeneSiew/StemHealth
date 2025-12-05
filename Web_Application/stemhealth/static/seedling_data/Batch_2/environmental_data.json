@@ -1,0 +1,122 @@
+[
+    {
+        "timestamp": "14-06-2024_12-56-03",
+        "filename": "14-06-2024_12-56-03.png",
+        "humidity": 70.8,
+        "temperature": 28.3
+    },
+    {
+        "timestamp": "14-06-2024_18-56-07",
+        "filename": "14-06-2024_18-56-07.png",
+        "humidity": 70.6,
+        "temperature": 28.8
+    },
+    {
+        "timestamp": "15-06-2024_00-56-10",
+        "filename": "15-06-2024_00-56-10.png",
+        "humidity": 69.9,
+        "temperature": 28.8
+    },
+    {
+        "timestamp": "15-06-2024_06-56-13",
+        "filename": "15-06-2024_06-56-13.png",
+        "humidity": 69.9,
+        "temperature": 28.9
+    },
+    {
+        "timestamp": "15-06-2024_12-56-16",
+        "filename": "15-06-2024_12-56-16.png",
+        "humidity": 78.5,
+        "temperature": 28.1
+    },
+    {
+        "timestamp": "15-06-2024_18-56-20",
+        "filename": "15-06-2024_18-56-20.png",
+        "humidity": 79.9,
+        "temperature": 28.3
+    },
+    {
+        "timestamp": "16-06-2024_00-56-23",
+        "filename": "16-06-2024_00-56-23.png",
+        "humidity": 79.3,
+        "temperature": 29.3
+    },
+    {
+        "timestamp": "16-06-2024_06-56-26",
+        "filename": "16-06-2024_06-56-26.png",
+        "humidity": 77.1,
+        "temperature": 29.5
+    },
+    {
+        "timestamp": "16-06-2024_12-56-29",
+        "filename": "16-06-2024_12-56-29.png",
+        "humidity": 77.1,
+        "temperature": 29.5
+    },
+    {
+        "timestamp": "16-06-2024_18-56-33",
+        "filename": "16-06-2024_18-56-33.png",
+        "humidity": 73.0,
+        "temperature": 29.3
+    },
+    {
+        "timestamp": "17-06-2024_00-56-36",
+        "filename": "17-06-2024_00-56-36.png",
+        "humidity": 72.3,
+        "temperature": 29.3
+    },
+    {
+        "timestamp": "17-06-2024_06-56-39",
+        "filename": "17-06-2024_06-56-39.png",
+        "humidity": 70.8,
+        "temperature": 29.2
+    },
+    {
+        "timestamp": "17-06-2024_12-56-42",
+        "filename": "17-06-2024_12-56-42.png",
+        "humidity": 68.4,
+        "temperature": 28.8
+    },
+    {
+        "timestamp": "17-06-2024_18-56-45",
+        "filename": "17-06-2024_18-56-45.png",
+        "humidity": 66.5,
+        "temperature": 25.2
+    },
+    {
+        "timestamp": "18-06-2024_00-56-48",
+        "filename": "18-06-2024_00-56-48.png",
+        "humidity": 72.7,
+        "temperature": 28.5
+    },
+    {
+        "timestamp": "18-06-2024_06-56-52",
+        "filename": "18-06-2024_06-56-52.png",
+        "humidity": 71.6,
+        "temperature": 28.7
+    },
+    {
+        "timestamp": "18-06-2024_12-56-55",
+        "filename": "18-06-2024_12-56-55.png",
+        "humidity": 71.6,
+        "temperature": 28.7
+    },
+    {
+        "timestamp": "18-06-2024_18-56-58",
+        "filename": "18-06-2024_18-56-58.png",
+        "humidity": 71.6,
+        "temperature": 28.9
+    },
+    {
+        "timestamp": "19-06-2024_00-57-02",
+        "filename": "19-06-2024_00-57-02.png",
+        "humidity": 71.6,
+        "temperature": 28.9
+    },
+    {
+        "timestamp": "19-06-2024_06-57-05",
+        "filename": "19-06-2024_06-57-05.png",
+        "humidity": 70.2,
+        "temperature": 29.0
+    }
+]
