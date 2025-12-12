@@ -31,4 +31,32 @@ as well as correlating the stem elongation with environmental data.
 
 ## Web Application
 > Dashboard Page (Before Upload) 
-![Dashboard Page (Before Upload)](https://github.com/EugeneSiew/StemHealth/blob/main/images/Batch%20Profile%20Page%20(After%20Measurement).png)
+![Dashboard Page (Before Upload)](https://github.com/EugeneSiew/StemHealth/blob/main/images/Batch%20Profile%20Page%20(Before%20Measurement).png)
+
+> Upload Page
+![Upload Page](https://github.com/EugeneSiew/StemHealth/blob/main/images/Upload%20Page.png)
+
+> Completed Upload Form
+![Completed Upload Form](https://github.com/EugeneSiew/StemHealth/blob/478d54ee9afe7659f49896513d1c8c70d4bb53ba/images/Completed%20Upload%20Form.png)
+
+> Successful Upload
+![Successful Upload](https://github.com/EugeneSiew/StemHealth/blob/main/images/Successful%20Upload.png)
+
+> Dashboard Page (After Upload)
+![Dashboard Page After Upload](https://github.com/EugeneSiew/StemHealth/blob/main/images/Dashboard%20Page%20(After%20Upload).png)
+
+> Multiple Batches Page
+![Multiple Batches Page](https://github.com/EugeneSiew/StemHealth/blob/main/images/Multiple%20Batches.png)
+
+> Batch Profile Page (Before Measurement)
+![Batch Profile Page (Before Measurement)](https://github.com/EugeneSiew/StemHealth/blob/main/images/Batch%20Profile%20Page%20(Before%20Measurement).png)
+
+> Batch Profile Page (After Measurement)
+![Batch Profile Page (After Measurement)](https://github.com/EugeneSiew/StemHealth/blob/main/images/Batch%20Profile%20Page%20(After%20Measurement).png)
+
+> Popup Pane Displaying Prediction and Measurement Results
+![Popup Pane Displaying Prediction and Measurement Results](https://github.com/EugeneSiew/StemHealth/blob/main/images/Popup%20pane%20displaying%20the%20me%20prediction%20and%20measurement%20results.png)
+
+> Batch Profile Page with Height Analysis Tab Active (After Measurement)
+![Batch Profile Page with Height Analysis Tab Active (After Measurement)](https://github.com/EugeneSiew/StemHealth/blob/main/images/Batch%20profile%20page%20with%20height%20analysis%20tab%20active%20(after%20measurement).png)
+
