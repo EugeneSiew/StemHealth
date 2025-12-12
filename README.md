@@ -31,3 +31,4 @@ as well as correlating the stem elongation with environmental data.
 
 ## Web Application
 > Dashboard Page (Before Upload) 
+![Dashboard Page (Before Upload)](https://github.com/EugeneSiew/StemHealth/blob/main/images/Batch%20Profile%20Page%20(After%20Measurement).png)
